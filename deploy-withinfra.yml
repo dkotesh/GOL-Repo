@@ -46,8 +46,8 @@
   become: true
   tasks:
   - name: Install Java
-    command: yum install java-1.8.0-openjdk -y
-    command: yum install java-1.8.0-openjdk-devel -y
+    command: sudo yum install java-1.8.0-openjdk -y
+    command: sudo yum install java-1.8.0-openjdk-devel -y
   - lineinfile:
      path: /etc/profile
      line: 'export JRE_HOME=/usr/lib/jvm/jre'
