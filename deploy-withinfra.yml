@@ -22,7 +22,7 @@
       key_name: Amazon_Key
       image: ami-082e0125f6db2e1e5
       region: us-east-2
-      group: launch-wizard-25
+      group: launch-wizard-8
       count: 1
       wait: yes
       wait_timeout: 500
