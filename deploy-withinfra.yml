@@ -19,8 +19,8 @@
   - name: launching ec2 instance
     ec2:
       instance_type: t2.micro
-      key_name: sankar-devops
-      image: ami-0c78cdf6791bffb6f
+      key_name: Amazon_Key
+      image: ami-082e0125f6db2e1e5
       region: us-east-2
       group: launch-wizard-25
       count: 1
@@ -29,7 +29,7 @@
       instance_tags: 
             name: webserver
       assign_public_ip: yes
-      vpc_subnet_id: subnet-26c7f36a
+      vpc_subnet_id: subnet-09f60c3712055f666
     register: ec2  
   - name: Add Instance IP into in-memory inventory file not into hosts file
     add_host: 
@@ -103,7 +103,7 @@
     when: stat_result.stat.exists == True
   - name: Deploy War File
     get_url:
-       url: http://3.129.20.239:8081/nexus/service/local/artifact/maven/redirect?r=releases&g=com.wakaleo.gameoflife&a=gameoflife&p=war&v=LATEST
+       url: http://18.191.88.48:8081/nexus/service/local/artifact/maven/redirect?r=releases&g=com.wakaleo.gameoflife&a=gameoflife&p=war&v=LATEST
        dest: /usr/share/tomcat/webapps/gameoflife.war
   - name: Start Tomcat
     service: name=tomcat state=started
