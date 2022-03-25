@@ -64,8 +64,8 @@ pipeline {
             stage('Deploy War') {
                 steps {
                     //deploy adapters: [tomcat8(credentialsId: 'tomcat-cred', path: '', url: 'http://18.117.89.47:8080/')], contextPath: null, war: '**/*.war'
-                    //sh label: '', script: 'ansible-playbook deploy-withinfra.yml'
-                    sh label: '', script: 'ansible-playbook deploy.yml'
+                    sh label: '', script: 'ansible-playbook deploy-withinfra.yml'
+                    //sh label: '', script: 'ansible-playbook deploy.yml'
                 }
             }
         }
