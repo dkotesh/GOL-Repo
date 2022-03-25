@@ -1,38 +1,16 @@
 pipeline {
-    agent any 
+    agent any
     tools { 
         maven 'Maven' 
       
     }
 stages { 
      
- //stage('Preparation') { 
- //   steps {
-// for display purpose
-
-      // Get some code from a GitHub repository
-
-   //  git 'https://github.com/dkotesh/GOL-Repo.git'
-
-      // Get the Maven tool.
-     
- // ** NOTE: This 'Maven' Maven tool must be configured
- 
-     // **       in the global configuration.   
-     //}
-   //}
-
-   stage('Build') {
+    stage('Build') {
        steps {
-       // Run the maven build
+        sh 'mvn -Dmaven.test.failure.ignore=true install'
+              }
 
-      //if (isUnix()) {
-         sh 'mvn -Dmaven.test.failure.ignore=true install'
-      //} 
-      //else {
-      //   bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
-       }
-//}
    }
  
   stage('Unit Test Results') {
@@ -40,9 +18,7 @@ stages {
       junit '**/target/surefire-reports/TEST-*.xml'
       
       }
- 
-  
-        
+         
      stage('Artifact upload') {
       steps {
      nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'gameoflife-web/target/gameoflife.war']], mavenCoordinate: [artifactId: 'gameoflife', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]
@@ -63,6 +39,6 @@ post {
         failure {
             mail to:"dkotesh@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
         }
-    }       
-}
+    }
+           
 }
