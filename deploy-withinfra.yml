@@ -37,7 +37,7 @@
         groupname: tomcat
         ansible_user: jenkins
         ansible_become: yes
-        BECOME password[defaults to SSH password]:
+        
     loop: "{{ ec2.instances }}"
   - name: Wait for 180 seconds before tomcat setup play execution    
     wait_for:
