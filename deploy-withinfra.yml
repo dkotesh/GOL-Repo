@@ -36,7 +36,7 @@
         hostname: "{{ item.public_ip }}"
         groupname: tomcat
         ansible_user: jenkins
-        ansible_become: false
+        ansible_become: true
         
     loop: "{{ ec2.instances }}"
   - name: Wait for 180 seconds before tomcat setup play execution    
@@ -47,8 +47,8 @@
   become: false
   tasks:
   - name: Install Java
-    command: sudo yum install java-1.8.0-openjdk -y
-    command: sudo yum install java-1.8.0-openjdk-devel -y
+    command: yum install java-1.8.0-openjdk -y
+    command: yum install java-1.8.0-openjdk-devel -y
   - lineinfile:
      path: /etc/profile
      line: 'export JRE_HOME=/usr/lib/jvm/jre'
