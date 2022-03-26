@@ -36,7 +36,7 @@
         hostname: "{{ item.public_ip }}"
         groupname: tomcat
         ansible_user: jenkins
-        ansible_become: yes
+        ansible_become: false
         
     loop: "{{ ec2.instances }}"
   - name: Wait for 180 seconds before tomcat setup play execution    
