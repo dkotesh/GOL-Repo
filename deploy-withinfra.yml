@@ -22,12 +22,12 @@
       key_name: Amazon_Key
       image: ami-082e0125f6db2e1e5
       region: us-east-2
-      group: sg-0f4ee7068c8f41084
+      group: launch-wizard-8
       count: 1
       wait: yes
       wait_timeout: 500
       instance_tags: 
-            name: webserver
+            name: webservers
       assign_public_ip: yes
       vpc_subnet_id: subnet-09f60c3712055f666
     register: ec2  
